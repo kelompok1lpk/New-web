@@ -79,6 +79,15 @@ def halaman_3():
     st.markdown("Bahan: Bayam, pisang, susu almond, chia seed")
     st.subheader("2. 🫑Tofu Stir Fry🥕")
     st.markdown("Bahan: Tahu, paprika, wortel, kecap asin")
+    st.subheader("3. 🍫Overnight Oat Choco-Berry🍓")
+    st.markdown("Bahan: Oat, susu oat, kakao bubuk, stroberi")
+    st.markdown("Cara buat: Campur bahan, simpan di kulkas semalam.")
+    st.subheader("4. 🥜Salad Kacang🥜")
+    st.markdown("Bahan: Kacang merah, jagung, tomat, alpukat")
+    st.markdown("Cara buat: Campur semua bahan dengan dressing lemon & olive oil.")
+    st.subheader("5. 🥬Veggie Wrap🥬")
+    st.markdown("Bahan: Tortilla, selada, wortel, hummus, timun")
+    st.markdown("Cara buat: Isi tortilla dengan semua bahan dan gulung.")
     if st.button("Next"):
         st.session_state.page += 1
     if st.button("Back"):
