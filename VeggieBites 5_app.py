@@ -98,19 +98,27 @@ def halaman_4():
     st.title("Cari Pengganti Bahan")
     bahan_input = st.text_input("Masukkan nama bahan yang mau diganti:")
     pengganti = {
-        "susu": "susu almond / oat milk",
-        "telur": "chia egg (chia + air)",
-        "daging": "jamur, tempe, atau tofu",
-        "keju": "keju vegan berbasis kacang"
+          "susu": "susu almond / oat milk",
+            "telur": "chia egg (chia + air)",
+            "daging": "jamur, tempe, atau tofu",
+            "keju": "keju vegan berbasis kacang",
+            "daging sapi": "tempe, tahu, jamur tiram, jackfruit, seitan",
+            "daging ayam": "tempe, tahu, jamur tiram, jackfruit, seitan",
+            "daging giling": "kacang hitam, kacang merah, walnut cincang, tahu hancur",
+            "susu sapi": "susu almond, susu kedelai, oat milk, coconut milk",
+            "keju cheddar": "keju vegan, nutritional yeast",
+            "parmesan": "nutritional yeast, kacang mete blend",
+            "cream cheese": "tahu sutra + lemon + garam (di-blend)",
+            "mentega": "minyak kelapa, margarin vegan, alpukat",
+            "mayones": "mayones vegan, tofu + mustard + lemon",
     }
     if st.button("Search"):
-        hasil = pengganti.get(bahan_input.lower(), "Bahan tidak ditemukan")
-        st.success(f"Pengganti untuk {bahan_input}: {hasil}")
+         hasil = pengganti.get(bahan, "Bahan yang kamu cari belum ada di daftar. Coba bahan lain yuk!")
+        st.session_state.hasil_pengganti = f"Pengganti untuk {bahan}: {hasil}"
 
-    if st.button("Next"):
-        st.session_state.page += 1
-    if st.button("Back"):
-        st.session_state.page -= 1
+    # Tampilkan hasil kalau ada
+    if st.session_state.hasil_pengganti:
+        st.success(st.session_state.hasil_pengganti)
 
 
 def halaman_5():
