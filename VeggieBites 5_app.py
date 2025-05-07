@@ -95,10 +95,24 @@ def halaman_3():
 
 
 def halaman_4():
-    st.title("Cari Pengganti Bahan")
-    bahan_input = st.text_input("Masukkan nama bahan yang mau diganti:")
-    pengganti = {
-          "susu": "susu almond / oat milk",
+    st.title("Butuh Pengganti Bahan?")
+    st.markdown("Masukkan bahan yang ingin diganti, nanti kita bantu kasih alternatifnya!")
+    st.markdown("Contoh: susu, telur, daging, keju, dll")
+
+    # Simpan hasil di session_state
+    if "hasil_pengganti" not in st.session_state:
+        st.session_state.hasil_pengganti = ""
+    if "bahan_input" not in st.session_state:
+        st.session_state.bahan_input = ""
+
+    # Input text biasa
+    st.session_state.bahan_input = st.text_input("Masukkan nama bahan yang mau diganti:", value=st.session_state.bahan_input)
+
+    # Tombol Search
+    if st.button("Search"):
+        bahan = st.session_state.bahan_input.lower()
+        pengganti = {
+            "susu": "susu almond / oat milk",
             "telur": "chia egg (chia + air)",
             "daging": "jamur, tempe, atau tofu",
             "keju": "keju vegan berbasis kacang",
@@ -111,15 +125,24 @@ def halaman_4():
             "cream cheese": "tahu sutra + lemon + garam (di-blend)",
             "mentega": "minyak kelapa, margarin vegan, alpukat",
             "mayones": "mayones vegan, tofu + mustard + lemon",
-    }
-    if st.button("Search"):
-         hasil = pengganti.get(bahan, "Bahan yang kamu cari belum ada di daftar. Coba bahan lain yuk!")
+        }
+        hasil = pengganti.get(bahan, "Bahan yang kamu cari belum ada di daftar. Coba bahan lain yuk!")
         st.session_state.hasil_pengganti = f"Pengganti untuk {bahan}: {hasil}"
 
     # Tampilkan hasil kalau ada
     if st.session_state.hasil_pengganti:
         st.success(st.session_state.hasil_pengganti)
 
+    # Navigasi tombol
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Back", key="back4"):
+            st.session_state.page -= 1
+            st.session_state.hasil_pengganti = ""
+    with col2:
+        if st.button("Next", key="next4"):
+            st.session_state.page += 1
+            st.session_state.hasil_pengganti = ""
 
 def halaman_5():
     st.title("Terima Kasih Telah Berkunjung!")
